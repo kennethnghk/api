@@ -1,0 +1,14 @@
+{
+  "name": "learn-docker",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/kennethnghk/learn-docker",
+  "author": "Kenneth Ng",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
