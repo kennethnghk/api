@@ -3,12 +3,12 @@ FROM node:carbon
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-COPY yarn* ./
 
 RUN yarn
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
+CMD [ "yarn" ]
 CMD [ "yarn", "start" ]
