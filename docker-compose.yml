@@ -1,9 +1,16 @@
 version: '3'
 services:
-  web:
-    build: './web'
+  node:
+    build: ./node
     ports:
-     - "3000:3000"
+      - 8080:8080
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    links:
+      - node:node
 
   mongo:
     image: mongo
