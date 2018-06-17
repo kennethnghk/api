@@ -6,9 +6,33 @@
   "author": "Kenneth Ng",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "format": "prettier-standard '**/*.js'",
+    "pre-commit": "lint-staged",
+    "fixcode": "standard --fix"
+  },
+  "standard": {
+    "globals": [
+      "__DEV__",
+      "fetch"
+    ]
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.js": [
+        "prettier-standard",
+        "standard --fix",
+        "git add"
+      ]
+    }
   },
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier-standard": "^8.0.1",
+    "standard": "^11.0.1"
   }
 }
