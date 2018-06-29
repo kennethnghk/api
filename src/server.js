@@ -3,36 +3,20 @@
 const app = require('express')()
 const path = require('path')
 
-const swaggerTools = require('swagger-tools')
-const swaggerCombine = require('swagger-combine')
+const apiConfig = require('./api/config')
+const swagger = require('./middlewares/swagger')
 
 const PORT = 8080
 const HOST = '0.0.0.0'
 
 ;(async function () {
   try {
-    const swaggerDoc = await swaggerCombine(
-      path.join(__dirname, 'api/swagger.yml')
-    )
+    const swaggerConfig = await apiConfig.generate()
 
-    swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
-      // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
-      app.use(middleware.swaggerMetadata())
-
-      // Validate Swagger requests
-      app.use(middleware.swaggerValidator())
-
-      // Route validated requests to appropriate controller
-      app.use(
-        middleware.swaggerRouter({
-          controllers: path.join(__dirname, './controllers'),
-          useStubs: false
-        })
-      )
-
-      // Serve the Swagger documents and Swagger UI
-      app.use(middleware.swaggerUi())
-    })
+    const swaggerMiddlewares = await swagger.generateMiddlewares(swaggerConfig);
+    console.log(swaggerMiddlewares)
+    app.use(swaggerMiddlewares)
+    
   } catch (e) {
     console.error(e)
   }
