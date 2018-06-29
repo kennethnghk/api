@@ -1,24 +1,21 @@
-const path = require('path');
+const path = require('path')
 
 const swaggerCombine = require('swagger-combine')
 
 module.exports = {
-    async generate()  {
-   
+  async generate () {
+    const definitions = await swaggerCombine(
+      path.join(__dirname, './swagger.yml')
+    )
 
-        const definitions = await swaggerCombine(
-            path.join(__dirname, './swagger.yml')
-          )
-      
+    const routerConfig = {
+      controllers: path.join(__dirname, '../controllers'),
+      useStubs: false
+    }
 
-          const routerConfig = {
-            controllers: path.join(__dirname, '../controllers'),
-            useStubs: false
-          }
-
-       return {
-           definitions,
-           routerConfig
-       }
-}
+    return {
+      definitions,
+      routerConfig
+    }
+  }
 }
