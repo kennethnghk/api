@@ -6,7 +6,7 @@
   "author": "Kenneth Ng",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./src/server.js",
     "format": "prettier-standard '**/*.js'",
     "pre-commit": "lint-staged",
     "fixcode": "standard --fix"
@@ -27,7 +27,9 @@
     }
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "swagger-combine": "^0.18.1",
+    "swagger-tools": "^0.10.3"
   },
   "devDependencies": {
     "husky": "^0.14.3",

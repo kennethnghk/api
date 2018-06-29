@@ -1,0 +1,48 @@
+swagger: '2.0'
+host: '0.0.0.0:8080'
+basePath: /api/v1.0
+info:
+  version: 1.0.0
+  title: Map API
+  description: Map API
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: location
+    description: Location services
+paths:
+  /location:
+    x-swagger-router-controller: locationController
+    x-auth-schema:
+      - PUBLIC
+    post:
+      tags:
+        - location
+      summary: Add a location
+      operationId: createLocation
+      parameters:
+        - name: location
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/Location'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Location'
+definitions:
+  Location:
+      type: object
+      required:
+        - lat
+        - lng
+      properties:
+        lat:
+          type: number
+          example: 34.668795
+        lng:
+          type: number
+          example: 135.497381
