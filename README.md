@@ -1,22 +1,24 @@
 # api
 
-## Run the node.js app
+## Setup
+
+### Run the node.js app
 
 ```sh
 yarn start
 ```
-## Run by docker-compose
+### Run by docker-compose
 
 ```sh
 docker-compose up -d
 ```
 
-## Build docker image
+### Build docker image
 
 ```sh
 docker build -t api:v1 .
 ```
-## Run by Kubernetes (with Minikube)
+### Run by Kubernetes (with Minikube)
 
 Ref: https://kubernetes.io/docs/tutorials/hello-minikube/
 
@@ -29,3 +31,15 @@ Create service to expose the Pod to external
 ```sh
 kubectl expose deployment api --type=LoadBalancer
 ```
+
+## Projects
+
+### 1. Simple API
+
+```
+POST /api/v1.0/location
+```
+
+- Express.js
+- Swagger for validation
+- Docker and Kubenetes (minikube) setup
