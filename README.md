@@ -32,6 +32,12 @@ Create service to expose the Pod to external
 kubectl expose deployment api --type=LoadBalancer
 ```
 
+### Start mongo container for development
+
+```sh
+./scripts/start-mongodb.sh
+```
+
 ## Projects
 
 ### 1. Simple API
